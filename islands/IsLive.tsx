@@ -1,5 +1,4 @@
-const YOUR_API_KEY = "putYaOwnApiKeyBrothar";
-//const YOUR_API_KEY = "";
+const YOUR_API_KEY = Deno.env.get("YTKEY");
 export default function IsLive() {
   let live = ["", ""];
   live_info().then(res => {
