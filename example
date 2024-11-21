@@ -1,0 +1,23 @@
+{
+  kind: "youtube#searchListResponse",
+  etag: "GdHRwVy2Kra2-EB8sd6Fblxrv6k",
+  regionCode: "BR",
+  pageInfo: { totalResults: 1, resultsPerPage: 1 },
+  items: [
+    {
+      kind: "youtube#searchResult",
+      etag: "5_bxrDmqn7AfyKKR8_CURCuWD2c",
+      id: { kind: "youtube#video", videoId: "8bhDMOtYBww" },
+      snippet: {
+        publishedAt: "2024-11-21T13:58:55Z",
+        channelId: "UC2X643A7Hu0sqeet_wcJ-0g",
+        title: "Guerrilla Karaoke ikz????",
+        description: "",
+        thumbnails: { default: [Object], medium: [Object], high: [Object] },
+        channelTitle: "Yumemi Caelestis - Astral Shift",
+        liveBroadcastContent: "none",
+        publishTime: "2024-11-21T13:58:55Z"
+      }
+    }
+  ]
+}

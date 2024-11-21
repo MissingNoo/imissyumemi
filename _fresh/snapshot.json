@@ -1,0 +1,25 @@
+{
+  "build_id": "2a91e4a3a1c8bc77813b1727f943e33028f5a9b1",
+  "files": {
+    "main.js": [
+      "chunk-AMBYU5BD.js",
+      "chunk-V7IMYVGJ.js"
+    ],
+    "deserializer.js": [],
+    "signals.js": [
+      "chunk-UMY7KUS6.js",
+      "chunk-V7IMYVGJ.js"
+    ],
+    "island-counter.js": [
+      "chunk-AMBYU5BD.js",
+      "chunk-UMY7KUS6.js",
+      "chunk-V7IMYVGJ.js"
+    ],
+    "chunk-AMBYU5BD.js": [],
+    "chunk-UMY7KUS6.js": [
+      "chunk-V7IMYVGJ.js"
+    ],
+    "chunk-V7IMYVGJ.js": [],
+    "metafile.json": []
+  }
+}
