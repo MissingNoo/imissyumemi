@@ -37,25 +37,27 @@ export function live_info() {
     if (cur_hour == lasthour) {
       earlyexit = true;
     }
-    if (earlyexit) {
-      const id = Deno.env.get("lastid");
-      live = [livestatus, id];
-      return [livestatus, id];
-    }
+    
     fetch('https://www.youtube.com/channel/' + channelid).then(function (response) {
       return response.text();
     }).then(function (html) {
-      if (html.includes("AO VIVO")) {
+      if (html.includes("AO VIVO") || html.includes("LIVE")) {
         livestatus = "true";
       }
       else {
         livestatus = "false";
+        earlyexit = true;
       }
       Deno.env.set("laststatus", livestatus);
     }).catch(function (err) {
       console.log(err);
     });
     let id = "";
+    if (earlyexit) {
+      const id = Deno.env.get("lastid");
+      live = [livestatus, id];
+      return [livestatus, id];
+    }
     fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=' + channelid + '&order=date&eventType=completed&type=video&key=' + YOUR_API_KEY).then(function (response) {
         return response.text();
       }).then(function (json) {
