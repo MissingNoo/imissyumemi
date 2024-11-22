@@ -25,6 +25,7 @@ export function live_info() {
     const channelid = "UC2X643A7Hu0sqeet_wcJ-0g"; // REPLACE WITH YOUR CHANNEL ID
     const cur_hour = date.getHours();
     const lastsync = Deno.env.get("lasthoursync");
+    console.log("Now: " + cur_hour + " Last: " + lastsync);
     //lastsync = "0";
     let lasthour = 0;
     if (lastsync != undefined) {
