@@ -2,7 +2,7 @@ const YOUR_API_KEY = Deno.env.get("YTKEY");
 let live = ["", ""];
 export default function IsLive() {
   live_info();
-  //console.log(live)
+  console.log(live)
   if (live[0] == "true") {
     return (
       <p>
@@ -41,7 +41,7 @@ export function live_info() {
     fetch('https://www.youtube.com/channel/' + channelid).then(function (response) {
       return response.text();
     }).then(function (html) {
-      if (html.includes("AO VIVO") || html.includes("LIVE")) {
+      if (html.includes("AO VIVO")) {
         livestatus = "true";
       }
       else {
