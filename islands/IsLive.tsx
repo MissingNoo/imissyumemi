@@ -46,7 +46,9 @@ export function live_info() {
       }
       else {
         livestatus = "false";
-        earlyexit = true;
+        if (Deno.env.get("lastid") != undefined) {
+          earlyexit = true;
+        }
       }
       Deno.env.set("laststatus", livestatus);
     }).catch(function (err) {
