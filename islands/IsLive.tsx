@@ -25,7 +25,6 @@ export function live_info() {
     const channelid = "UC2X643A7Hu0sqeet_wcJ-0g"; // REPLACE WITH YOUR CHANNEL ID
     const cur_hour = date.getHours();
     const lastsync = Deno.env.get("lasthoursync");
-    console.log("Now: " + cur_hour + " Last: " + lastsync);
     //lastsync = "0";
     let lasthour = 0;
     if (lastsync != undefined) {
@@ -35,7 +34,9 @@ export function live_info() {
     if (laststatus != undefined) {
       livestatus = laststatus;
     }
+    console.log("Now: " + cur_hour + " Last: " + lasthour);
     if (cur_hour == lasthour) {
+      console.log("Exit early because of recent check");
       earlyexit = true;
     }
     
@@ -44,9 +45,11 @@ export function live_info() {
     }).then(function (html) {
       if (html.includes("AO VIVO")) {
         livestatus = "true";
+        console.log("Channel is live!");
       }
       else {
         livestatus = "false";
+        console.log("Channel is not live");
         if (Deno.env.get("lastid") != undefined) {
           earlyexit = true;
         }
@@ -57,6 +60,7 @@ export function live_info() {
     });
     let id = "";
     if (earlyexit) {
+      console.log("exiting early");
       const id = Deno.env.get("lastid");
       live = [livestatus, id];
       return [livestatus, id];
