@@ -26,7 +26,7 @@ export function live_info() {
     const cur_hour = date.getHours();
     const lastsync = Deno.env.get("lasthoursync");
     //lastsync = "0";
-    let lasthour = 0;
+    let lasthour = -1;
     if (lastsync != undefined) {
       lasthour = parseInt(lastsync);
     }
