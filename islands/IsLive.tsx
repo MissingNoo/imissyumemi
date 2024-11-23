@@ -1,7 +1,8 @@
 const YOUR_API_KEY = Deno.env.get("YTKEY");
+const date = new Date();
 let live = ["", ""];
+await live_info();
 export default function IsLive() {
-  live_info();
   console.log(live)
   if (live[0] == "true") {
     return (
@@ -21,9 +22,13 @@ export default function IsLive() {
     );
   }
 }
-const date = new Date();
 
-export function live_info() {
+
+export async function result() {
+  
+}
+
+export async function live_info() {
   let earlyexit = false;
     let livestatus = "false";
     //const channelid = "UCyKsg-57XC9pyHbP7v3kCPQ"; // REPLACE WITH YOUR CHANNEL ID
@@ -66,7 +71,8 @@ export function live_info() {
     let id = "";
 
     if (livestatus == "false") {
-      if (Check_Twitch("yumemivt")) {
+      //console.log(Check_Twitch("yumemivt"));
+      if (await Check_Twitch("yumemivt")) {
         earlyexit = true;
         livestatus = "twitch";
       }
@@ -77,6 +83,7 @@ export function live_info() {
       console.log("exiting early");
       const id = Deno.env.get("lastid");
       Deno.env.set("livestatus", livestatus);
+      console.log("s " + livestatus);
       live = [livestatus, id?id:""];
       return live;
     }
@@ -102,9 +109,9 @@ export function Check_Youtube() {
   
 }
 
-export function Check_Twitch(username: string) {
+export async function Check_Twitch(username: string) {
   let live = false;
-  const response = fetch(`https://twitch.tv/${username}`).then(function (response) {
+  const response = await fetch(`https://twitch.tv/${username}`).then(function (response) {
     return response.text();
   }).then(function (res) {
     if (res.includes("isLiveBroadcast")) {
