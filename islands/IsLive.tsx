@@ -69,12 +69,16 @@ export async function live_info() {
       console.log(err);
     });
     let id = "";
-
     if (livestatus == "false") {
       //console.log(Check_Twitch("yumemivt"));
+      let bt = livestatus;
       if (await Check_Twitch("yumemivt")) {
         earlyexit = true;
         livestatus = "twitch";
+        Deno.env.set("livestatus", livestatus);
+      }
+      else {
+        livestatus = bt;
         Deno.env.set("livestatus", livestatus);
       }
     }
@@ -83,8 +87,8 @@ export async function live_info() {
       console.log("exiting early");
       const id = Deno.env.get("lastid");
       Deno.env.set("livestatus", livestatus);
-      console.log("s " + livestatus);
       live = [livestatus, id?id:""];
+      console.log("a:" + live);
       return live;
     }
     fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=' + channelid + '&order=date&eventType=completed&type=video&key=' + YOUR_API_KEY).then(function (response) {
@@ -114,8 +118,9 @@ export async function Check_Twitch(username: string) {
   const response = await fetch(`https://twitch.tv/${username}`).then(function (response) {
     return response.text();
   }).then(function (res) {
-    if (res.includes("isLiveBroadcast")) {
+    if (res.includes('isLiveBroadcast')) {
       live = true;
+      console.log("s ");
     }
   });
   return live;
