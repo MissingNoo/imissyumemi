@@ -28,6 +28,15 @@ export default function LastLive() {
             </div>
         );
     }
+    else if (days == "Invalid date") {
+        return (
+            <div class="flex flex-col items-center">
+                <p>Some error ocurred on the server!</p>
+                <p>Maybe api limit was reached</p>
+                <p>try reloading the page</p>
+            </div>
+        );
+    }
     else {
         return (
             <div class="flex flex-col items-center">
