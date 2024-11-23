@@ -32,3 +32,20 @@ h1 {
     font-size: 40px;
     text-align: center;
 }
+
+div.fresh {
+    border-radius: 25px;
+    background: linear-gradient(#bd93f925,#bd93f9);
+    color: white;
+    padding: 5px 20px 15px 20px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }

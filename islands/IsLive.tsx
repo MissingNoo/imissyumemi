@@ -10,6 +10,11 @@ export default function IsLive() {
       </p>
     );
   }
+  else if (live[0] == "twitch") {
+    return (
+      <p style="color: #9146ff;"><a href="https://www.twitch.tv/yumemivt">Live on Twitch!</a></p>
+    );
+  }
   else {
     return (
         <p style="color: cyan;">Currently dreaming</p>
@@ -39,7 +44,7 @@ export function live_info() {
       console.log("Exit early because of recent check");
       earlyexit = true;
     }
-    
+
     fetch('https://www.youtube.com/channel/' + channelid).then(function (response) {
       return response.text();
     }).then(function (html) {
@@ -59,11 +64,21 @@ export function live_info() {
       console.log(err);
     });
     let id = "";
+
+    if (livestatus == "false") {
+      if (Check_Twitch("yumemivt")) {
+        earlyexit = true;
+        livestatus = "twitch";
+      }
+      //Deno.env.set("lasttwitch")
+    }
+
     if (earlyexit) {
       console.log("exiting early");
       const id = Deno.env.get("lastid");
-      live = [livestatus, id];
-      return [livestatus, id];
+      Deno.env.set("livestatus", livestatus);
+      live = [livestatus, id?id:""];
+      return live;
     }
     fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=' + channelid + '&order=date&eventType=completed&type=video&key=' + YOUR_API_KEY).then(function (response) {
         return response.text();
@@ -81,4 +96,20 @@ export function live_info() {
         //console.log(err);
       });
     return [livestatus, id];
+}
+
+export function Check_Youtube() {
+  
+}
+
+export function Check_Twitch(username: string) {
+  let live = false;
+  const response = fetch(`https://twitch.tv/${username}`).then(function (response) {
+    return response.text();
+  }).then(function (res) {
+    if (res.includes("isLiveBroadcast")) {
+      live = true;
+    }
+  });
+  return live;
 }

@@ -1,5 +1,6 @@
 import { type PageProps } from "$fresh/server.ts";
 import { Partial } from "$fresh/runtime.ts";
+import Footer from "../islands/Footer.tsx";
 export default function App({ Component }: PageProps) {
   return (
     <html>
@@ -14,6 +15,9 @@ export default function App({ Component }: PageProps) {
             <Component />
         </Partial>
       </body>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </html>
   );
 }

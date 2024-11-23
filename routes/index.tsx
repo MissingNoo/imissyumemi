@@ -30,8 +30,8 @@ export default function Home() {
           <p>Hiccup counter</p>
           <Hiccup></Hiccup>
         </div>
+        <Socials></Socials>
       </div>
-      <Socials></Socials>
     </div>
   );
 }

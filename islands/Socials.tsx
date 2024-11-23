@@ -11,7 +11,7 @@ export default function Socials() {
                 </th>
                 <th class="toplinks" style="color: red;">
                   <a style="color: #FF0000;" class="link" href="https://www.youtube.com/@yumemivt">
-                    <img width="78" src="youtube_social_icon_red.png" alt="" />Youtube
+                    <img width="78" src="youtube_social_icon_red.png" alt="" />YouTube
                   </a>
                 </th>
                 <th class="toplinks" style="color: #5865F2;">
