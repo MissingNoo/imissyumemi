@@ -10,6 +10,8 @@ div.dreaming {
     border-width: 2px;
     padding: 10px 60px 10px 60px;
     margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 a.link {
