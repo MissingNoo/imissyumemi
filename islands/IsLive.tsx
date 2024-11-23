@@ -75,8 +75,8 @@ export async function live_info() {
       if (await Check_Twitch("yumemivt")) {
         earlyexit = true;
         livestatus = "twitch";
+        Deno.env.set("livestatus", livestatus);
       }
-      //Deno.env.set("lasttwitch")
     }
 
     if (earlyexit) {
