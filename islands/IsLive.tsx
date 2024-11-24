@@ -4,7 +4,11 @@ const username = "yumemivt";
 const YOUR_API_KEY = Deno.env.get("YTKEY");
 const date = new Date();
 const cur_hour = date.getHours();
-let lasthour = Deno.env.get("lasthoursync") ?? -1;
+let lasthour = -1;
+const lastsync = Deno.env.get("lasthoursync");
+if (lastsync != undefined) {
+  lasthour = parseInt(lastsync);
+}
 let liveon = "nowhere";
 
 await live_info();
@@ -30,7 +34,10 @@ export default function IsLive() {
 }
 
 export async function live_info() {
-  lasthour = Deno.env.get("lasthoursync") ?? -1;
+  const lastsync = Deno.env.get("lasthoursync");
+  if (lastsync != undefined) {
+    lasthour = parseInt(lastsync);
+  }
   console.log("====================");
   await Check_Youtube();
   await Check_Twitch();
