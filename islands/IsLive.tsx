@@ -13,6 +13,7 @@ let liveon = "nowhere";
 
 await live_info();
 export default function IsLive() {
+  liveon = "nowhere";
   live_info();
   Deno.env.set("livestatus", liveon);
   switch (liveon) {
