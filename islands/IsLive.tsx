@@ -1,3 +1,5 @@
+import live from "../routes/partials/live.tsx";
+
 //const channelid = "UClSHdqgOYiV5tTI6RiF4-Dg";
 const channelid = "UC2X643A7Hu0sqeet_wcJ-0g";
 const username = "yumemivt";
@@ -13,8 +15,8 @@ let liveon = "nowhere";
 
 await live_info();
 export default function IsLive() {
-  liveon = "nowhere";
   live_info();
+  console.log(liveon)
   Deno.env.set("livestatus", liveon);
   switch (liveon) {
     case "youtube":
@@ -36,17 +38,27 @@ export default function IsLive() {
 
 export async function live_info() {
   const lastsync = Deno.env.get("lasthoursync");
+  console.log(lasthour)
+  console.log(lastsync)
   if (lastsync != undefined) {
     lasthour = parseInt(lastsync);
+  }
+  else {
+    Deno.env.set("lasthoursync", "-1");
   }
   console.log("====================");
   await Check_Youtube();
   await Check_Twitch();
   console.log("Now: " + cur_hour + "h Last: " + lasthour + "h");
-
   if (cur_hour == lasthour) {
     console.log("Exiting early");
     return;
+  }
+  else {
+    liveon = "nowhere";
+    Deno.env.set("lasthoursync", String(cur_hour));
+    await Check_Youtube();
+    await Check_Twitch();
   }
 
   //In case streamer is live only on youtube, grab current stream id
@@ -92,15 +104,19 @@ export async function Last_Youtube_live(status: string) {
 }
 
 export async function Check_Twitch() {
+  let islive = false;
   await fetch(`https://twitch.tv/${username}`).then(function (response) {
     return response.text();
   }).then(function (res) {
     if (res.includes('isLiveBroadcast')) {
-      liveon = "twitch";
+      islive = true;
       console.log("Channel is live on Twitch!");
     }
     else {
       console.log("Channel is not live on Twitch");
     }
   });
+  if (islive) {
+    liveon = "twitch";
+  }
 }
