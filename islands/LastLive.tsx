@@ -8,18 +8,20 @@ export default function LastLive() {
     let months = res.format("MM");
     if (months[0] == "0") {
         months = months.replace("0", "");
-        if (months = "0") {
+        if (months == "0") {
             months = "";
         }
         else {
+            months = (Number.parseInt(months) - 1).toString();
             if (Number.parseInt(months) > 1) {
-                months = months + "months,";
+                months = months + " months,";
             }
             else {
-                months = months + "month,";
-            }            
+                months = months + " month,";
+            }
         }
     }
+    console.log("a" + months);
     let days = res.format("DD");
     if (days[0] == "0") {
         days = days.replace("0", "");
