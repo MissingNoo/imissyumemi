@@ -5,6 +5,21 @@ export default function LastLive() {
     const secondDate = Deno.env.get("lastdate")?.toString().replace("T", " ").replace("Z", "").replaceAll("-", "/");
     const res = moment.utc(moment(firstDate,"YYYY/MM/DD HH:mm:ss").diff(moment(secondDate,"YYYY/MM/DD HH:mm:ss")));
     
+    let months = res.format("MM");
+    if (months[0] == "0") {
+        months = months.replace("0", "");
+        if (months = "0") {
+            months = "";
+        }
+        else {
+            if (Number.parseInt(months) > 1) {
+                months = months + "months,";
+            }
+            else {
+                months = months + "month,";
+            }            
+        }
+    }
     let days = res.format("DD");
     if (days[0] == "0") {
         days = days.replace("0", "");
@@ -53,7 +68,7 @@ export default function LastLive() {
     else {
         return (
             <div class="flex flex-col items-center">
-                <a href={"https://youtube.com/watch?v=" + lastid}>{days} days, {hours} hours, {minutes} minutes, {seconds} seconds without Yumemi (on YouTube)</a>
+                <a href={"https://youtube.com/watch?v=" + lastid}>{months} {days} days, {hours} hours, {minutes} minutes, {seconds} seconds without Yumemi (on YouTube)</a>
             </div>
         );
     }
