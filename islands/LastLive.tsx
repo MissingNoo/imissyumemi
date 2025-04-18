@@ -21,7 +21,6 @@ export default function LastLive() {
             }
         }
     }
-    console.log("a" + months);
     let days = res.format("DD");
     if (days[0] == "0") {
         days = days.replace("0", "");
