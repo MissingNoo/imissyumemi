@@ -25,6 +25,8 @@ export default function App({ Component }: PageProps) {
           <audio id="sound11"> <source src="hiccups/11.mp3" type="audio/mpeg"> </audio>
           <audio id="sound12"> <source src="hiccups/12.mp3" type="audio/mpeg"> </audio>
           <audio id="sound13"> <source src="hiccups/13.mp3" type="audio/mpeg"> </audio>
+          <audio id="sound14"> <source src="hiccups/14.mp3" type="audio/mpeg"> </audio>
+          <audio id="sound15"> <source src="hiccups/15.mp3" type="audio/mpeg"> </audio>
 
           <script>
             var x = document.getElementById("myAudio"); 
