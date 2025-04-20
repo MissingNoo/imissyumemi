@@ -1,3 +1,4 @@
+import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
 import live from "../routes/partials/live.tsx";
 
 //const channelid = "UClSHdqgOYiV5tTI6RiF4-Dg";
@@ -12,7 +13,7 @@ if (lastsync != undefined) {
   lasthour = parseInt(lastsync);
 }
 let liveon = "nowhere";
-
+const kv = await Deno.openKv();
 await live_info();
 export default function IsLive() {
   live_info();
@@ -67,7 +68,7 @@ export async function live_info() {
   }
   else if (liveon == "nowhere") {
     //In case streamer is not live in any place, grab the latest completed youtube live and store the id/date
-    await Last_Youtube_live("completed");
+    //await Last_Youtube_live("completed");
   }
 }
 
@@ -78,6 +79,8 @@ export async function Check_Youtube() {
     if (html.includes('AO VIVO') || html.includes('<div class="badge-shape-wiz__text">LIVE</div>')) {
       liveon = "youtube";
       console.log("Channel is live on YouTube!");
+      kv.set(["last", "youtube"], moment.utc().format("YYYY/MM/DD HH:mm:ss"));
+      kv.set(["last", "latest"], "youtube");
     }
     else {
       console.log("Channel is not live on YouTube");
@@ -111,6 +114,8 @@ export async function Check_Twitch() {
     if (res.includes('isLiveBroadcast')) {
       islive = true;
       console.log("Channel is live on Twitch!");
+      kv.set(["last", "twitch"], moment.utc().format("YYYY/MM/DD HH:mm:ss"));
+      kv.set(["last", "latest"], "twitch");
     }
     else {
       console.log("Channel is not live on Twitch");

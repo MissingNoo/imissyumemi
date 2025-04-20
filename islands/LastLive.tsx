@@ -1,8 +1,26 @@
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
-
+const kv = await Deno.openKv();
+const lasttw = await kv.get(["last", "twitch"]);
+const lastyt = await kv.get(["last", "youtube"]);
+const latest = await kv.get(["last", "latest"]);
 export default function LastLive() {
+    let live_link = "";
+    const lastid = Deno.env.get("lastid");
     const firstDate = moment.utc().format("YYYY/MM/DD HH:mm:ss");
-    const secondDate = Deno.env.get("lastdate")?.toString().replace("T", " ").replace("Z", "").replaceAll("-", "/");
+    let secondDate = moment.utc().format("YYYY/MM/DD HH:mm:ss");
+    switch (latest.value) {
+        case "youtube":
+            //secondDate = Deno.env.get("lastdate")?.toString().replace("T", " ").replace("Z", "").replaceAll("-", "/");
+            secondDate = String(lastyt.value);
+            live_link = "https://youtube.com/watch?v=" + lastid;
+            break;
+    
+        case "twitch":
+            secondDate = String(lasttw.value);
+            live_link = "https://twitch.tv/yumemivt"
+            break;
+    }
+    
     const res = moment.utc(moment(firstDate,"YYYY/MM/DD HH:mm:ss").diff(moment(secondDate,"YYYY/MM/DD HH:mm:ss")));
     
     let months = res.format("MM");
@@ -20,6 +38,9 @@ export default function LastLive() {
                 months = months + " month,";
             }
         }
+    }
+    if (months == "0 month,") {
+        months = "";
     }
     let days = res.format("DD");
     if (days[0] == "0") {
@@ -41,7 +62,7 @@ export default function LastLive() {
         seconds = seconds.replace("0", "");
     }
 
-    const lastid = Deno.env.get("lastid");
+    
     const status = Deno.env.get("livestatus");
     if (status == "twitch") {
         return (
@@ -69,7 +90,7 @@ export default function LastLive() {
     else {
         return (
             <div class="flex flex-col items-center">
-                <a href={"https://youtube.com/watch?v=" + lastid}>{months} {days} days, {hours} hours, {minutes} minutes, {seconds} seconds without Yumemi (on YouTube)</a>
+                <a href={live_link}>{months} {days} days, {hours} hours, {minutes} minutes, {seconds} seconds without Yumemi (on {latest.value})</a>
             </div>
         );
     }

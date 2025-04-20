@@ -1,5 +1,11 @@
+
 export default function Hiccup() {
     return (
-        <p>26</p>
+        <div class="flex flex-col items-center">
+            <p>26</p>
+            <div dangerouslySetInnerHTML={{ __html: `
+                <button onclick="playAudio()" type="button">Click here to Hiccup</button>` 
+            }} />
+        </div>
     )
 }
