@@ -31,7 +31,7 @@ export default function App({ Component }: PageProps) {
           <script>
             var x = document.getElementById("myAudio"); 
 
-            mySounds = [ 'sound1', 'sound2', 'sound3', 'sound4', 'sound5' ]
+            mySounds = [ 'sound1', 'sound2', 'sound3', 'sound4', 'sound5', 'sound6', 'sound7', 'sound8', 'sound9', 'sound10', 'sound11', 'sound12', 'sound13', 'sound14', 'sound15' ];
             function randomSound() {
               var index = Math.floor(Math.random() * 1000) % mySounds.length;
               var id = mySounds[index];
