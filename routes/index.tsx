@@ -1,32 +1,37 @@
-///<reference lib="deno.unstable"/>
-import Hiccup from "../islands/Hiccups.tsx";
-import LastLive from "../islands/LastLive.tsx";
-import IsLive from "../islands/IsLive.tsx";
-import Socials from "../islands/Socials.tsx";
+// deno-lint-ignore-file react-no-danger
+import { global_hiccups, yumemi_hiccups } from "./api/total_hiccups.ts";
+import { signal } from "@preact/signals";
+import { livestring } from "../routes/api/is_live.ts";
+import { time_since_last } from "./api/last_live.ts";
+import Hiccups from "../islands/Hiccups.tsx";
+const count = signal(global_hiccups);
+const ymmhic = signal(yumemi_hiccups);
+export function add_count() {
+  count.value++;
+}
 export default function Home() {
   return (
-    <div class="bg-[#d1aaf3]">
-      <div class="flex flex-col items-center justify-center">
-        <h1>Yumemi Caelestis</h1>
+    <div class="px-4 py-8 mx-auto my-auto">
+      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
+        <h1 class="text-4xl font-bold">I Miss Yumemi</h1>
         <img
-          class="my-6 rounded-full"
-          src="/yumemi.png"
-          width="256"
-          border-radius="30"
-          alt="Yumemi's profile icon"
+          class="vtuber-icon my-6"
+          src="/yumemi.jpg"
+          width="128"
+          height="128"
+          alt="Yumemi Caelestis picture"
         />
-        <div class="dreaming flex flex-col items-center">
-          <p>Current Stream</p>
-          <IsLive></IsLive>
+        <div
+          class="dreaming flex flex-col items-center justify-center"
+          dangerouslySetInnerHTML={{ __html: livestring }}
+        >
         </div>
-        <div class="dreaming flex flex-col items-center">
-          <LastLive></LastLive>
+        <div
+          class="dreaming flex flex-col items-center justify-center"
+          dangerouslySetInnerHTML={{ __html: time_since_last() }}
+        >
         </div>
-        <div class="dreaming flex flex-col items-center">
-          <p>Hiccup counter</p>
-          <Hiccup></Hiccup>
-        </div>
-        <Socials></Socials>
+        <Hiccups count={count} ymm={ymmhic} />
       </div>
     </div>
   );

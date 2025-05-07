@@ -1,0 +1,1 @@
+import{b as e}from"./chunk-TUO7E6IK.js";import{a as n}from"./chunk-MEABNXAK.js";import{g as t}from"./chunk-V66ALGLP.js";var a=t([]);var S=t(void 0);function i(r){return r.children}i.displayName="Partial";function P(r){return n("button",{...r,disabled:!e||r.disabled,class:"px-2 py-1 border-gray-500 border-2 rounded bg-white hover:bg-gray-200 transition-colors"})}export{P as a};
