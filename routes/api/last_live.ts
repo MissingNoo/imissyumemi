@@ -10,10 +10,11 @@ let last_site: any = "Offline";
 async function get_last() {
   const last = await kv.get(["last", "latest"]);
   last_site = last.value;
-
-  await kv.get(["last", last_site]).then((res) => {
-    first_check = { value: res.value };
-  });
+  if (last_site != "Offline") {
+    await kv.get(["last", last_site]).then((res) => {
+      first_check = { value: res.value };
+    });
+  }
 }
 await get_last();
 const last_live = first_check.value;
