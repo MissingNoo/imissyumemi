@@ -8,12 +8,16 @@ import { kv, twitch_channel_id, youtube_channel_link } from "../../data.ts";
 let first_check: any = "";
 let last_site: any = "Offline";
 async function get_last() {
-  const last = await kv.get(["last", "latest"]);
-  last_site = last.value;
-  if (last_site != "Offline") {
-    await kv.get(["last", last_site]).then((res) => {
-      first_check = { value: res.value };
-    });
+  try {
+    const last = await kv.get(["last", "latest"]);
+    last_site = last.value;
+    if (last_site != "Offline") {
+      await kv.get(["last", last_site]).then((res) => {
+        first_check = { value: res.value };
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 await get_last();
