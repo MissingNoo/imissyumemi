@@ -14,7 +14,6 @@ export default function App({ Component }: PageProps) {
         <Component />
       </body>
       <footer>
-        <Socials></Socials>
       </footer>
     </html>
   );
