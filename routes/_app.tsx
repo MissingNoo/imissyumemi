@@ -1,4 +1,3 @@
-import Socials from "../islands/Socials.tsx";
 import { type PageProps } from "$fresh/server.ts";
 export default function App({ Component }: PageProps) {
   return (
