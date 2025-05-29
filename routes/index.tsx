@@ -1,7 +1,7 @@
 // deno-lint-ignore-file react-no-danger
 import { signal } from "@preact/signals";
 export function handler(req: Request): Response {
-  return Response.redirect("https://imissyumemi.337494.xyz", 307);
+  return Response.redirect("http://imissyumemi.337494.xyz", 307);
 }
 export default function Home() {
   return (
