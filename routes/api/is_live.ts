@@ -1,6 +1,6 @@
 import { FreshContext } from "$fresh/server.ts";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
-import { kv, twitch_channel_id, youtube_channel_id } from "../../data.ts";
+import { redis, twitch_channel_id, youtube_channel_id } from "../../data.ts";
 let firststatus = "Offline";
 async function Check_Youtube() {
   await fetch(`https://www.youtube.com/channel/${youtube_channel_id}`).then(
@@ -13,8 +13,8 @@ async function Check_Youtube() {
       html.includes('<div class="badge-shape-wiz__text">LIVE</div>')
     ) {
       firststatus = "Youtube";
-      kv.set(["last", "youtube"], moment.utc().format("YYYY/MM/DD HH:mm:ss"));
-      kv.set(["last", "latest"], "youtube");
+      redis.set("youtube", moment.utc().format("YYYY/MM/DD HH:mm:ss"));
+      redis.set("latest", "youtube");
     }
   }).catch(function (err) {
     console.log(err);
@@ -34,8 +34,8 @@ async function Check_Twitch() {
         firststatus += "|Twitch";
       }
 
-      kv.set(["last", "twitch"], moment.utc().format("YYYY/MM/DD HH:mm:ss"));
-      kv.set(["last", "latest"], "twitch");
+      redis.set("twitch", moment.utc().format("YYYY/MM/DD HH:mm:ss"));
+      redis.set("latest", "twitch");
     }
   });
 }

@@ -3,17 +3,17 @@
 import { FreshContext } from "$fresh/server.ts";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
 import { live_status } from "./is_live.ts";
-import { kv, twitch_channel_id, youtube_channel_link } from "../../data.ts";
+import { redis, twitch_channel_id, youtube_channel_link } from "../../data.ts";
 
 let first_check: any = "";
 let last_site: any = "Offline";
 async function get_last() {
   try {
-    const last = await kv.get(["last", "latest"]);
-    last_site = last.value;
+    const last = await redis.get("latest");
+    last_site = last;
     if (last_site != "Offline") {
-      await kv.get(["last", last_site]).then((res) => {
-        first_check = { value: res.value };
+      await redis.get(last_site).then((res) => {
+        first_check = { value: res };
       });
     }
   } catch (error) {
@@ -21,11 +21,11 @@ async function get_last() {
   }
 }
 await get_last();
-const last_live = first_check.value;
+const last_live = first_check;
 
 export function time_since_last() {
   const firstDate = moment.utc().format("YYYY/MM/DD HH:mm:ss");
-  let secondDate = last_live;
+  let secondDate = last_live.value;
   const res = moment.utc(
     moment(firstDate, "YYYY/MM/DD HH:mm:ss").diff(
       moment(secondDate, "YYYY/MM/DD HH:mm:ss"),
@@ -40,13 +40,13 @@ export function time_since_last() {
     } else {
       months = (Number.parseInt(months) - 1).toString();
       if (Number.parseInt(months) > 1) {
-        months = months + " months,";
+        months = months + " months, ";
       } else {
-        months = months + " month,";
+        months = months + " month, ";
       }
     }
   }
-  if (months == "0 month,") {
+  if (months == "0 month, ") {
     months = "";
   }
 
