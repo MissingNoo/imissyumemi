@@ -14,8 +14,6 @@ export const redis = createClient({
 
 await client.connect();
 await redis.connect();
-redis.set("latest", "twitch");
-redis.set("twitch", "2025/04/20 19:35:58")
 export const db = client.db("yumemi");
 export interface Hiccups {
   _id: string;
