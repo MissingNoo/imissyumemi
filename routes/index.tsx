@@ -9,6 +9,9 @@ const ymmhic = signal(yumemi_hiccups);
 export function add_count() {
   count.value++;
 }
+export function handler(req: Request): Response {
+  return Response.redirect("https://imissyumemi.337494.xyz", 307);
+}
 export default function Home() {
   return (
     <div class="px-4 py-8 mx-auto my-auto">
