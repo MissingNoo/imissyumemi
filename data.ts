@@ -9,7 +9,7 @@ const client = new MongoClient("mongodb://localhost:27017");
 //const client = new MongoClient("mongodb://0.tcp.sa.ngrok.io:15005");
 import { createClient } from "npm:redis@^4.5";
 export const redis = createClient({
-	  url: "redis://localhost:6379",
+  url: "redis://localhost:6379",
 });
 
 await client.connect();

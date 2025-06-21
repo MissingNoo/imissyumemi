@@ -32,5 +32,3 @@ jobs:
           project: "imissyumemi"
           entrypoint: "main.ts"
           root: "."
-          
-          
