@@ -1,0 +1,72 @@
+{
+  "build_id": "267ecd6eb55b1c65d0454b5b56894b34097de9d5",
+  "files": {
+    "main.js": [
+      "chunk-MORY7OGJ.js",
+      "chunk-GI7LLYGM.js",
+      "chunk-ULR4URCE.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "deserializer.js": [
+      "chunk-LDV6YPMG.js"
+    ],
+    "signals.js": [
+      "chunk-6XHVL7IE.js",
+      "chunk-PT7MJDCX.js",
+      "chunk-GI7LLYGM.js",
+      "chunk-ULR4URCE.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-counter.js": [
+      "chunk-VTNILQIE.js",
+      "chunk-MORY7OGJ.js",
+      "chunk-PT7MJDCX.js",
+      "chunk-GI7LLYGM.js",
+      "chunk-EMOVIG5Q.js",
+      "chunk-ULR4URCE.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "island-hiccups.js": [
+      "chunk-VTNILQIE.js",
+      "chunk-MORY7OGJ.js",
+      "chunk-PT7MJDCX.js",
+      "chunk-GI7LLYGM.js",
+      "chunk-EMOVIG5Q.js",
+      "chunk-ULR4URCE.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "chunk-VTNILQIE.js": [
+      "chunk-MORY7OGJ.js",
+      "chunk-EMOVIG5Q.js",
+      "chunk-ULR4URCE.js"
+    ],
+    "chunk-MORY7OGJ.js": [],
+    "island-lastlive.js": [
+      "chunk-6XHVL7IE.js",
+      "chunk-PT7MJDCX.js",
+      "chunk-GI7LLYGM.js",
+      "chunk-EMOVIG5Q.js",
+      "chunk-ULR4URCE.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "chunk-6XHVL7IE.js": [
+      "chunk-PT7MJDCX.js",
+      "chunk-ULR4URCE.js"
+    ],
+    "chunk-PT7MJDCX.js": [
+      "chunk-ULR4URCE.js"
+    ],
+    "chunk-GI7LLYGM.js": [],
+    "island-socials.js": [
+      "chunk-EMOVIG5Q.js",
+      "chunk-ULR4URCE.js",
+      "chunk-LDV6YPMG.js"
+    ],
+    "chunk-EMOVIG5Q.js": [
+      "chunk-ULR4URCE.js"
+    ],
+    "chunk-ULR4URCE.js": [],
+    "chunk-LDV6YPMG.js": [],
+    "metafile.json": []
+  }
+}
