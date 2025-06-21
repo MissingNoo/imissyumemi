@@ -11,7 +11,10 @@ import { createClient } from "npm:redis@^4.5";
 export const redis = createClient({
   url: "redis://localhost:6379",
 });
-
+redis.on("error", function(error) {
+  console.error(error);
+  // I report it onto a logging service like Sentry. 
+});
 await client.connect();
 await redis.connect();
 export const db = client.db("yumemi");
