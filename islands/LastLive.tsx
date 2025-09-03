@@ -1,6 +1,9 @@
 import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
+
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
+import { IS_BROWSER } from "$fresh/runtime.ts";
+import { exit } from "node:process";
 
 export default function LastTimer(props: { target: string, last : string, status:string, ytlink:string, twlink:string}) {
   const firstDate = useSignal(moment.utc().format("YYYY/MM/DD HH:mm:ss"));
@@ -10,6 +13,7 @@ export default function LastTimer(props: { target: string, last : string, status
   // Set up an interval to update the `now` date every second with the current
   // date as long as the component is mounted.
   useEffect(() => {
+    
     const timer = setInterval(() => {
       firstDate.value = moment.utc().format("YYYY/MM/DD HH:mm:ss");
       const res = moment.utc(
@@ -102,10 +106,5 @@ export default function LastTimer(props: { target: string, last : string, status
     }, 1000);
     return () => clearInterval(timer);
   }, [props.target]);
-    // If the target date has passed, we stop counting down.
-
-  // Otherwise, we format the remaining time using `Intl.RelativeTimeFormat` and
-  // render it.
-  //return <span>{end}</span>;
   return <div dangerouslySetInnerHTML={{ __html:  end.value}}></div>
 }

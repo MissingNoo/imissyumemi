@@ -4,6 +4,7 @@ import { FreshContext } from "$fresh/server.ts";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
 import { live_status } from "./is_live.ts";
 import { redis, twitch_channel_id, youtube_channel_link } from "../../data.ts";
+import { repeat } from "jsr:@std/bytes@^1.0.2/repeat";
 
 let first_check: any = "";
 export let last_site: any = "Offline";
@@ -62,5 +63,11 @@ export function calc_time(startdate: string, enddate: string) {
 
 export const handler = (_req: Request, _ctx: FreshContext): Response => {
   const body = last_live;
+  const a:any = [];
+const b:any = [];
+b.forEach(element => {
+    
+});
   return new Response(body);
+  
 };
