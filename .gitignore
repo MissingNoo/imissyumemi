@@ -1,5 +1,5 @@
 .env
-node_modules
+node_modules/
 node_modules/.deno/.setup-cache.bin
 hiccups/Second_Hiccups-30fps.mp4
 _fresh/

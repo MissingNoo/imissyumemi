@@ -106,5 +106,6 @@ export default function LastTimer(props: { target: string, last : string, status
     }, 1000);
     return () => clearInterval(timer);
   }, [props.target]);
-  return <div dangerouslySetInnerHTML={{ __html:  end.value}}></div>
+  //return <div dangerouslySetInnerHTML={{ __html:  end.value}}></div>
+  return <div>Yeah, this timer got broken, and it's been like 12+ months, I ain't fixing it, man, i miss her</div>
 }
